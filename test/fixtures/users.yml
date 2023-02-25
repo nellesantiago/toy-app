@@ -1,0 +1,13 @@
+user:
+  first_name: User
+  last_name: Test
+  email: user@test.email
+  password_digest: <%= User.digest('password') %>
+  role: user
+
+admin:
+  first_name: Admin
+  last_name: Rails
+  email: admin@email.com
+  password_digest: <%= User.digest('password') %>
+  role: admin

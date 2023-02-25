@@ -57,5 +57,4 @@ class UserTest < ActiveSupport::TestCase
     @user.password = "test123"
     assert @user.save
   end
-
 end
