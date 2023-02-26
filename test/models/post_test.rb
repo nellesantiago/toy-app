@@ -19,4 +19,9 @@ class PostTest < ActiveSupport::TestCase
         @post.description = nil
         assert_not @post.save
     end
+
+    test "title should not exceed maximum of 20 characters" do
+        @post.title = "abcdefghijklmnopqrstuvwxyz"
+        assert_not @post.save
+    end
 end
