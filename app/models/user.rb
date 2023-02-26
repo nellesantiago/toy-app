@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :posts
+  
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
     BCrypt::Engine.cost
@@ -19,4 +21,8 @@ class User < ApplicationRecord
   validates :password, length: { in: 6..20 }
 
   enum role: { user: 0, admin: 1 }
+
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
 end
