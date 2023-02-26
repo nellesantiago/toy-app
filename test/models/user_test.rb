@@ -2,7 +2,7 @@ require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
   def setup
-    @user = User.new(first_name: "Rails", last_name: "Test", email: "rails@email.com", password: "test123")
+    @user = User.new(first_name: "Rails", last_name: "Test", email: "rails@email.com", password: "test123", password_confirmation: "test123")
   end
 
   test "user should be valid" do
@@ -43,6 +43,13 @@ class UserTest < ActiveSupport::TestCase
     @user.save
     @user2 = User.new(first_name: "Rails", last_name: "Test", email: @user.email, password: "test123")
     assert_not @user2.save
+  end
+
+  test "user email should be case insensitive" do
+    email = "tEsT@EmAiL.cOm"
+    @user.email = email
+    @user.save
+    assert_equal email.downcase, @user.email
   end
 
   test "user should have a password" do
