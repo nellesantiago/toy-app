@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  validates_presence_of :first_name, :last_name, :email, :password
+  validates_presence_of :first_name, :last_name, :email
 
   validates :first_name, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }, length: { in: 1..20 }
   validates :last_name, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }, length: { in: 1..20 }
@@ -18,7 +18,7 @@ class User < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   before_save { self.email = email.downcase }
 
-  validates :password, length: { in: 6..20 }
+  validates :password, presence: true, length: { in: 6..20 }, allow_nil: true
 
   enum role: { user: 0, admin: 1 }
 

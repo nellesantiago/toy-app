@@ -1,0 +1,21 @@
+<h1>Edit Account Details</h1>
+
+<%= form_for(@user) do |f| %>
+<%= f.label :first_name %>
+<%= f.text_field :first_name %>
+<%= f.label :last_name %>
+<%= f.text_field :last_name %>
+<%= f.label :email %>
+<%= f.email_field :email %>
+<%= f.label :password %>
+<%= f.password_field :password %>
+<%= f.label :password_confirmation, "Confirmation" %>
+<%= f.password_field :password_confirmation %>
+<%= f.submit "Save changes"%>
+<% end %>
+
+<br>
+<%= link_to "Delete Account", @user, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %>
+
+<br>
+<%= link_to "Back", :back%>

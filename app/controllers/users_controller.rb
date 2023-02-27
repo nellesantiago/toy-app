@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: %i[edit update destroy]
+
   def new
     @user = User.new
   end
@@ -12,7 +14,29 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @user.update(user_params)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    log_out
+    @user.destroy
+    redirect_to root_url
+  end
+    
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
+
+  def set_user
+    @user = User.find(params[:id])
+  end
 end
+
+
