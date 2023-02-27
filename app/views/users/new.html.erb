@@ -1,0 +1,32 @@
+<h1>Register</h1>
+
+<%= form_for(@user) do |form| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <% @user.errors.each do |error| %>
+        <div><%= error.full_message %></div>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.text_field :first_name, placeholder: "First Name" %>
+  </div>
+  <div class="field">
+    <%= form.text_field :last_name, placeholder: "Last Name" %>
+  </div>
+  <div class="field">
+    <%= form.email_field :email, placeholder: "Email Address" %>
+  </div>
+  <div class="field">
+    <%= form.password_field :password, placeholder: "Password (minimum 6 characters)" %>
+  </div>
+  <div class="field">
+    <%= form.password_field :password_confirmation, placeholder: "Confirm Password" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<br>
+<%= link_to "Back", :back %>
