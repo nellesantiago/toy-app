@@ -7,7 +7,7 @@ user:
 
 admin:
   first_name: Admin
-  last_name: Rails
+  last_name: Account
   email: admin@email.com
   password_digest: <%= User.digest('password') %>
   role: admin
