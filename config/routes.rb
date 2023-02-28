@@ -12,8 +12,11 @@ Rails.application.routes.draw do
 
   get "signup", to: "users#new"
 
-  resources :users, except: :new
-  resources :posts
+  resources :users, except: :new do
+    resources :posts
+  end
+
+  get "dashboard", to: "admin#index"
 end
 
 

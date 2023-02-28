@@ -5,8 +5,14 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(email: params[:session][:email].downcase)
     if @user&.authenticate(params[:session][:password])
-    login(@user)
-    redirect_to posts_path
+      login(@user)
+      if @user.admin?
+        redirect_to dashboard_path
+        return
+      end
+      redirect_to user_posts_path(@user)
+    else
+      render :new
     end
   end
 
@@ -15,5 +21,3 @@ class SessionsController < ApplicationController
     redirect_to root_url
   end
 end
-
-

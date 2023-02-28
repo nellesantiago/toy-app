@@ -1,0 +1,9 @@
+<h1>Admin Dashboard</h1>
+
+<ul>
+<% @users.each do | user| %>
+    <li><%= user.full_name %> | <%= user.email %> </li>
+<% end %>
+</ul>
+
+<%= link_to "Log out", logout_path, data: {turbo_method: :delete} %>
