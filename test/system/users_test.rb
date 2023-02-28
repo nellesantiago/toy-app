@@ -60,7 +60,7 @@ class UsersTest < ApplicationSystemTestCase
   test "delete account" do
     login(@user)
 
-    visit edit_user_path(@user)
+    click_on "Settings"
     
     page.accept_confirm do
       click_on "Delete Account"

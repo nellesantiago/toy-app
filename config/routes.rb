@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :posts
   end
 
-  get "dashboard", to: "admin#index"
+  get "admin/dashboard", to: "admin#index"
 end
 
 

@@ -26,11 +26,16 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    log_out
-    @user.destroy
-    redirect_to root_url
+    if @user.user?
+      log_out
+      @user.destroy
+      redirect_to root_url
+    else
+      @user.destroy
+      redirect_to admin_dashboard_path
+    end
   end
-    
+
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
@@ -39,5 +44,3 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 end
-
-
