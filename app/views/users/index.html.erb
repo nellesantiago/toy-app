@@ -2,6 +2,7 @@
 
 <% @users.each do | user | %>
     <li>
+    <%= avatar_for(user)%>
     Name: <%= user.full_name %><br>
     <% if current_user.admin? %>
     Email: <%= user.email %><br>

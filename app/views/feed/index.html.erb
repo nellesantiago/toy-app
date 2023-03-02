@@ -2,9 +2,14 @@
 
 <% @posts.each do | post | %>
     <li>
+    <%= avatar_for(post.user) %>
     <%= post.user.full_name %><br>
-    <%= post.title %><br>
-    <%= post.description %><br><br>
+    Title: <%= post.title %><br>
+    Description: <%= post.description %><br>
+    <% if post.image.attached? %>
+    <%= image_tag(post.image, style: "width: 300px") %>
+    <% end %>
+    <br><br>
     </li>
 <% end %>
 

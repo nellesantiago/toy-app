@@ -11,10 +11,14 @@
 
 <% @posts.each do | post | %>
   <li>
+    <%= avatar_for(post.user)%>
     Title:
     <%= post.title %><br>
     Description:
     <%= post.description %><br>
+    <% if post.image.attached? %>
+    <%= image_tag(post.image, style: "width: 300px") %>
+    <% end %><br>
     <% if current_user == @user %>
     <%= link_to "Edit", edit_user_post_path(post.user_id, post) %>
     <%= link_to "Delete",
