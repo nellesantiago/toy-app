@@ -17,7 +17,10 @@ module SessionsHelper
     end
 
     def authenticate_user
-        redirect_to root_path unless user_logged_in?
+        unless user_logged_in?
+        flash[:danger] = "You are not logged in"
+        redirect_to root_path
+        end
     end
 
     def current_user?(user)

@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user, except: %i[new create]
   before_action :set_user, only: %i[edit update destroy]
+
+  def index
+    @users = User.where(role: "user")
+  end
 
   def new
     @user = User.new
@@ -8,7 +13,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_path
+      login(@user)
+      flash[:notice] = "Welcome, #{@user.first_name}!"
+      redirect_to user_posts_path(@user)
     else
       render :new, status: :unprocessable_entity
     end
@@ -19,6 +26,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
+      flash[:notice] = "Account updated."
       redirect_to user_posts_path(@user)
     else
       render :edit
@@ -28,13 +36,17 @@ class UsersController < ApplicationController
   def destroy
     if current_user.admin?
       @user.destroy
-      redirect_to admin_dashboard_path
+      flash[:notice] = "Account deleted."
+      redirect_to users_path
     else
       log_out
       @user.destroy
+      flash[:notice] = "Account deleted."
       redirect_to root_url
     end
   end
+
+  private
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)

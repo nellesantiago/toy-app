@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
   def new
+    if user_logged_in?
+      redirect_to user_posts_path(current_user) if current_user.user?
+      redirect_to feed_path if current_user.admin?
+    end
   end
 
   def create
@@ -7,12 +11,13 @@ class SessionsController < ApplicationController
     if @user&.authenticate(params[:session][:password])
       login(@user)
       if @user.admin?
-        redirect_to admin_dashboard_path
+        redirect_to feed_path
         return
       end
       redirect_to user_posts_path(@user)
     else
-      render :new
+      flash[:alert] = "Invalid email or password."
+      redirect_to root_path
     end
   end
 

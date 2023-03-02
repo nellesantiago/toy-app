@@ -3,7 +3,8 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[edit update destroy]
 
   def index
-    @posts = current_user.posts
+    @posts = User.find(params[:user_id]).posts
+    @user = User.find(params[:user_id])
   end
 
   def new
@@ -26,6 +27,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
+      flash[:notice] = "Post updated."
       redirect_to user_posts_path
     else
       render :edit
@@ -34,6 +36,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
+    flash[:notice] = "Post deleted."
     redirect_to user_posts_path
   end
 
