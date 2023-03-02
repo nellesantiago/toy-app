@@ -1,0 +1,28 @@
+<h1>All Users</h1>
+
+<% @users.each do | user | %>
+    <li>
+    Name: <%= user.full_name %><br>
+    <% if current_user.admin? %>
+    Email: <%= user.email %><br>
+    <% end %>
+    User since: <%= user.created_at.strftime("%b %d %Y")%><br>
+    Published <%= pluralize(user.posts.count, "post")%><br>   
+    <%= link_to "Profile", user_posts_path(user)%>
+    <% if current_user.admin? %>
+        <%= link_to "Delete User",
+      user,
+      data: {
+        turbo_method: :delete,
+        turbo_confirm: "Delete user?"
+      } %>
+      <% end %>
+    <br><br>
+    </li>
+<% end %>   
+
+<% if current_user.admin? %>
+<%= link_to "Back", feed_path %>
+<% else %>
+<%= link_to "Back", user_posts_path(current_user)%>
+<% end %>

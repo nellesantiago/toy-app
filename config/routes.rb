@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :posts
   end
 
-  get "admin/dashboard", to: "admin#index"
+  get "feed", to: "feed#index"
 end
 
 
