@@ -43,11 +43,10 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :description, :image)
+    params.require(:post).permit(:title, :description, images: [])
   end
 
   def set_post
     @post = current_user.posts.find(params[:id])
   end
 end
-  

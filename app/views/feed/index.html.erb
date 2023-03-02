@@ -6,8 +6,10 @@
     <%= post.user.full_name %><br>
     Title: <%= post.title %><br>
     Description: <%= post.description %><br>
-    <% if post.image.attached? %>
-    <%= image_tag(post.image, style: "width: 300px") %>
+    <% if post.images.attached? %>
+    <% post.images.each do | image |%>
+    <%= image_tag(image, style: "width: 300px") %>
+    <% end %>
     <% end %>
     <br><br>
     </li>
