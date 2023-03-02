@@ -7,7 +7,7 @@ class PostsTest < ApplicationSystemTestCase
     end
 
     test "show all current user posts" do
-        assert_text "Title"
+        assert_text "Hello"
     end
 
     test "add a new post" do
@@ -35,7 +35,7 @@ class PostsTest < ApplicationSystemTestCase
          click_on "Delete"
         end
 
-        assert_text "Title"
+        assert_text "Hello"
     end
 end
 

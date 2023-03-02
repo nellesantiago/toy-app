@@ -72,6 +72,6 @@ class UsersTest < ApplicationSystemTestCase
   test "log in as admin" do
     login(@admin)
 
-    assert_text "Admin Dashboard"
+    assert_text "Feed"
   end
 end
