@@ -26,13 +26,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if @user.user?
+    if current_user.admin?
+      @user.destroy
+      redirect_to admin_dashboard_path
+    else
       log_out
       @user.destroy
       redirect_to root_url
-    else
-      @user.destroy
-      redirect_to admin_dashboard_path
     end
   end
 

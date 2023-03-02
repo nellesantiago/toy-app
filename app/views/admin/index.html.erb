@@ -1,11 +1,29 @@
 <h1>Admin Dashboard</h1>
 
-<h3>Users:</h3>
+<h3>Users</h3>
+
 <ul>
-<% @users.each do | user| %>
-    <li><%= user.full_name %> | <%= user.email %> | <%= link_to "Delete User", user, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-</li>
-<% end %>
+  <% @users.each do | user| %>
+    <li><%= user.full_name %>
+      |
+      <%= user.email %>
+      |
+      <%= link_to "Delete User",
+      user,
+      data: {
+        turbo_method: :delete,
+        turbo_confirm: "Delete user?"
+      } %></li><br>
+    <div>
+      <%= user.first_name %>'s Posts:</div>
+    <% user.posts.each do |post| %>
+      Title:
+      <%= post.title %><br>
+      Description:
+      <%= post.description %>
+      <br><br>
+    <% end %>
+  <% end %>
 </ul>
 
-<%= link_to "Log out", logout_path, data: {turbo_method: :delete} %>
+<%= link_to "Log out", logout_path, data: { turbo_method: :delete } %>
