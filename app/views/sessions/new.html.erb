@@ -1,11 +1,28 @@
-<h1>Home Page</h1>
-
-<%= form_for(:session, url: login_path) do |f| %>
-<%= f.label :email %>
-<%= f.email_field :email, class: 'form-control' %>
-<%= f.label :password %>
-<%= f.password_field :password, class: 'form-control' %>
-<%= f.submit "Log in", class: "btn btn-primary" %> <% end %>
-<br>
-<%= link_to "Sign up", signup_path %>
-
+<body class="login-page">
+  <main>
+    <section class="left">
+      <img src="https://www.linkpicture.com/q/rb.png">
+    </section>
+    <section class="right">
+      <form>
+        <div class="greetings">
+          Welcome!<br>
+          Sign in to continue.
+        </div>
+        <div class="text">
+          Don't have an account?
+          <%= link_to "Create an account", signup_path %><br>
+          It takes less than a minute.
+        </div>
+        <%= form_for(:session, url: login_path) do |f| %>
+          <%= f.label :email %>
+          <%= f.email_field :email %>
+          <%= f.label :password %>
+          <%= f.password_field :password %>
+          <%= f.submit "Sign in" %>
+        <% end %>
+      </form>
+      <%= link_to "< Back to home", root_path, class: "back" %>
+    </section>
+  </main>
+</body>

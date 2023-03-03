@@ -1,0 +1,87 @@
+.login-page {
+  overflow: hidden;
+
+  main {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+
+    .left {
+      background-color: #dee8e5;
+      img {
+        width: 600px;
+      }
+    }
+
+    .right {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      padding: 200px 100px;
+
+      .greetings {
+        font-size: 45px;
+        font-weight: 600;
+        margin-bottom: 30px;
+      }
+
+      .text {
+        margin-bottom: 30px;
+
+        a {
+          &:hover {
+            color: black;
+          }
+        }
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+
+        label {
+          margin-bottom: 5px;
+        }
+
+        input[type='email'] {
+          height: 40px;
+          outline: none;
+          padding: 0 10px;
+          margin-bottom: 20px;
+          border-radius: 10px;
+          border: 1px solid #429f95;
+        }
+
+        input[type='password'] {
+          height: 40px;
+          outline: none;
+          padding: 0 10px;
+          margin-bottom: 40px;
+          border-radius: 10px;
+          border: 1px solid #429f95;
+        }
+
+        input[type='submit'] {
+          height: 40px;
+          background-color: #429f95;
+          border: none;
+          outline: none;
+          color: white;
+          cursor: pointer;
+          border-radius: 10px;
+          border: 1px solid #429f95;
+          margin-bottom: 30px;
+
+          &:hover {
+            background: none;
+            color: inherit;
+          }
+        }
+      }
+
+      .back {
+        font-size: 14px;
+      }
+    }
+  }
+}
