@@ -4,7 +4,7 @@
       <img src="https://www.linkpicture.com/q/rb.png">
     </section>
     <section class="right">
-      <form>
+      <div class="form">
         <div class="greetings">
           Welcome!<br>
           Sign in to continue.
@@ -14,14 +14,13 @@
           <%= link_to "Create an account", signup_path %><br>
           It takes less than a minute.
         </div>
+        <%= render "layouts/flash" %>
         <%= form_for(:session, url: login_path) do |f| %>
-          <%= f.label :email %>
-          <%= f.email_field :email %>
-          <%= f.label :password %>
-          <%= f.password_field :password %>
+          <%= f.email_field :email, placeholder: "Email" %>
+          <%= f.password_field :password, placeholder: "Password" %>
           <%= f.submit "Sign in" %>
         <% end %>
-      </form>
+      </div>
       <%= link_to "< Back to home", root_path, class: "back" %>
     </section>
   </main>

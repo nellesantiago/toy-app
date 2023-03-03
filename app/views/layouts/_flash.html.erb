@@ -1,6 +1,6 @@
 <div id="flash">
-    <% flash.each do | message | %>
-        <div class="alert">
+    <% flash.each do | message_type, message | %>
+        <div class="<%= message_type %>">
             <%= message %>
         </div>
     <% end %>

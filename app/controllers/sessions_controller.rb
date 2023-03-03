@@ -16,8 +16,8 @@ class SessionsController < ApplicationController
       end
       redirect_to user_posts_path(@user)
     else
-      flash[:alert] = "Invalid email or password."
-      redirect_to root_path
+      flash[:alert] = "Invalid email or password"
+      redirect_to login_path
     end
   end
 
