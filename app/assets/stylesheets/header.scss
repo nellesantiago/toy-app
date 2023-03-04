@@ -1,0 +1,46 @@
+.nav {
+  height: 90px;
+  padding: 0 100px;
+  background-color: #dee8e5;
+  background-image: url('https://www.linkpicture.com/q/clouds.png');
+  width: 1680px;
+  height: 90px;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  box-shadow: 1px 0px 9px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 1px 0px 9px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 0px 9px 0px rgba(0, 0, 0, 0.75);
+  position: fixed;
+  top: 0;
+  z-index: 5;
+
+  nav {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    div:first-child {
+      display: flex;
+      align-items: center;
+      font-size: 25px;
+      font-weight: 700;
+    }
+
+    img {
+      width: 45px;
+      margin-right: 20px;
+    }
+
+    a {
+      text-decoration: none;
+      margin-left: 90px;
+
+      &:hover {
+        color: black;
+      }
+    }
+  }
+}
