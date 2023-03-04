@@ -10,6 +10,9 @@ class PostsController < ApplicationController
   def new
     @user = current_user
     @post = current_user.posts.build
+    if current_user.admin?
+      redirect_to feed_path
+    end
   end
 
   def create
@@ -37,7 +40,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     flash[:notice] = "Post deleted."
-    redirect_to user_posts_path
+    redirect_to request.referrer
   end
 
   private
