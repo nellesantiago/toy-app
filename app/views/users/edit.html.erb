@@ -1,21 +1,34 @@
-<h1>Edit Account Details</h1>
+<body class="settings">
+  <%= render "layouts/nav" %>
+  <main>
+    <section class="left">
+      <div class="title">Account Settings</div>
+      <%= form_for(@user) do |f| %>
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name %>
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name %>
+        <%= f.label :email, "Email address" %>
+        <%= f.email_field :email %>
+        <%= f.label :password, "Password (leave blank if you don't want to change it)"%>
+        <%= f.password_field :password %>
+        <%= f.label :password_confirmation, "Confirm your password" %>
+        <%= f.password_field :password_confirmation %>
+        <%= f.submit "Save changes" %>
+      <% end %>
+    </section>
+    <section class="right">
+        <div class="title">Delete Account</div>
+        <div class="note">
+        Note: This is irreversible.<br>You may lose your data including your posts.
+        </div>
+      <%= link_to "Continue to account deletion",
+      @user,
+      data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?"
+      }, class: "delete-account" %>
+    </section>
+  </main>
 
-<%= form_for(@user) do |f| %>
-<%= f.label :first_name %>
-<%= f.text_field :first_name %>
-<%= f.label :last_name %>
-<%= f.text_field :last_name %>
-<%= f.label :email %>
-<%= f.email_field :email %>
-<%= f.label :password %>
-<%= f.password_field :password %>
-<%= f.label :password_confirmation, "Confirmation" %>
-<%= f.password_field :password_confirmation %>
-<%= f.submit "Save changes"%>
-<% end %>
-
-<br>
-<%= link_to "Delete Account", @user, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %>
-
-<br>
-<%= link_to "Back", :back%>
+</body>
