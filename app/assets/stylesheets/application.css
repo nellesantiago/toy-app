@@ -42,3 +42,11 @@
   color: rgb(219, 37, 37);
   margin-bottom: 20px;
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+body {
+  background-color: #dee8e5;
+}
