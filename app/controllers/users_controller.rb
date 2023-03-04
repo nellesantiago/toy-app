@@ -22,6 +22,9 @@ class UsersController < ApplicationController
   end
 
   def edit
+    if current_user.admin?
+      redirect_to feed_path
+    end
   end
 
   def update
