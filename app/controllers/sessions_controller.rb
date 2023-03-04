@@ -10,11 +10,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:session][:email].downcase)
     if @user&.authenticate(params[:session][:password])
       login(@user)
-      if @user.admin?
-        redirect_to feed_path
-        return
-      end
-      redirect_to user_posts_path(@user)
+      redirect_to feed_path
     else
       flash[:alert] = "Invalid email or password"
       redirect_to login_path
