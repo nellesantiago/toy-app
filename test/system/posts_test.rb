@@ -6,36 +6,44 @@ class PostsTest < ApplicationSystemTestCase
         login(@user)
     end
 
-    test "show all current user posts" do
-        assert_text "Hello"
+    test "show all posts" do
+        assert_text "Feed"
+    end
+
+    test "show current user's posts" do
+        click_on "Wall"
+        assert page.has_content?(@user.full_name)
     end
 
     test "add a new post" do
-        click_on "Add Post"
+        click_on "Wall"
+        click_on(class: "add-new")
 
         fill_in "Title", with: "First Post"
         fill_in "Description", with: "This is my first post."
-        click_on "Create Post"
+        click_on "Create Toy"
 
         assert_text "First Post"
     end
 
     test "edit a post" do
-        click_on "Edit"
+        find(".fa-pen").click
 
         fill_in "Title", with: "Update Post"
         fill_in "Description", with: "This is my updated post."
-        click_on "Update Post"
+        click_on "Update Toy"
 
         assert_text "Update Post"
     end
 
     test "delete a post" do
         page.accept_confirm do
-         click_on "Delete"
+         find(".fa-trash").click
         end
 
-        assert_text "Hello"
+        click_on "Wall"
+
+        assert_text "You don't have any toys yet."
     end
 end
 
