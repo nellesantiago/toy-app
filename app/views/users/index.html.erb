@@ -1,7 +1,7 @@
 <body class="users">
   <%= render "layouts/nav" %>
   <main>
-    <% @users.each do | user | %>
+    <% @users.order(created_at: :asc).each do | user | %>
       <div class="container">
         <%= avatar_for(user) %>
         <div class="name"><%= user.full_name %></div>
