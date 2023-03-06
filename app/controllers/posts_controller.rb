@@ -34,10 +34,9 @@ class PostsController < ApplicationController
   def update
     if @post.update(post_params)
       respond_to do |format|
-        format.html {redirect_to user_posts_path, notice: "Post updated."}
+        format.html {redirect_to request.referrer, notice: "Post updated."}
         format.turbo_stream
       end
-
     else
       render :edit
     end

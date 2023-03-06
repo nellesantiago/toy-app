@@ -1,16 +1,27 @@
-<%= turbo_frame_tag @post do %>
-  <h1>Edit Post</h1>
-  <%= form_for( [@user, @post]) do |form| %>
-    <div class="field">
-      <%= form.label :title %>
-      <%= form.text_field :title, placeholder: "Title" %>
+<%= turbo_frame_tag "edit_post" do %>
+  <div class="post-modal">
+    <div class="post-container">
+      <h1>Edit Toy</h1>
+      <%= form_for([@user, @post]) do |form| %>
+        <div class="field">
+          <%= form.label :title %>
+          <%= form.text_field :title, placeholder: "Title" %>
+        </div>
+        <div class="field">
+          <%= form.label :description %>
+          <%= form.text_field :description, placeholder: "Description" %>
+          <%= form.file_field :images, multiple: true %>
+          <% @post.images.each do |image| %>
+            <% if image.persisted? %>
+              <%= image_tag image, style: "width: 50px" %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="actions">
+          <%= form.submit "Update Toy" %>
+        </div>
+        <%= link_to "Close", :back %>
+      <% end %>
     </div>
-    <div class="field">
-      <%= form.label :description %>
-      <%= form.text_field :description, placeholder: "Description" %>
-    </div>
-    <div class="actions">
-      <%= form.submit %>
-    </div>
-  <% end %>
+  </div>
 <% end %>
