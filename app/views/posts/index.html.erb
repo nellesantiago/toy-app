@@ -1,59 +1,29 @@
 <body class="feed">
   <%= render "layouts/nav" %>
   <main>
-  <% if @posts.empty? %>
-  <div class="empty">
-  <div class="message">
-  You don't have any toys yet.<br>
-  <%= link_to "Add one now", new_user_post_path(current_user), class: "add-one" %> <span>or</span> <%= link_to "browse feed", feed_path %>
-  </div>
-  <img src="https://www.linkpicture.com/q/lion_1.png">
-  </div>
-  <% else%>
-    <% @posts.order(created_at: :desc).each do | post | %>
-      <div class="container">
-        <div class="top">
-          <div class="user">
-            <%= avatar_for(post.user) %>
-            <div class="details">
-              <%= post.user.full_name %>
-              <div class="time">
-                <%= distance_of_time_in_words(DateTime.now, post.created_at) %>
-                ago
-              </div>
-            </div>
-          </div>
-          <% if current_user == post.user %>
-            <div class="options">
-              <%= link_to edit_user_post_path(post.user_id, post), :title => "Edit" do %>
-                <i class="fa-solid fa-pen"></i>
-              <% end %>
-              <%= link_to user_post_path(current_user, post), :title => "Delete", data: { turbo_method: :delete,turbo_confirm: "Delete post?"} do %>
-                <i class="fa-solid fa-trash"></i>
-              <% end %>
-            </div>
-            <% end %>
+    <% if @posts.empty? %>
+      <div class="empty">
+        <div class="message">
+          You don't have any toys yet.<br>
+          <%= link_to "Add one now", new_user_post_path(current_user), class: "add-one" %>
+          <span>or</span>
+          <%= link_to "browse feed", feed_path %>
         </div>
-        <div class="middle">
-          <% if post.images.attached? %>
-            <% post.images.each do | image | %>
-              <%= image_tag(image, style: "width: 300px") %>
-            <% end %>
-          <% else %>
-            <div class="no-image">No image</div>
-          <% end %>
-        </div>
-        <div class="bottom">
-          <div class="title">
-            <%= post.title %>
-          </div>
-          <div class="description">
-            <%= post.description %>
-          </div>
-        </div>
+        <img src="https://www.linkpicture.com/q/lion_1.png">
       </div>
-    <% end %>
-    <%= link_to "+", new_user_post_path(current_user), class: "add-new" %>
+    <% else %>
+      <%= turbo_frame_tag "posts" do %>
+        <%= render @posts %>
+        <% if current_user?(@posts.first.user) %>
+          <%= link_to "+",
+          new_user_post_path(current_user),
+          class: "add-new",
+          data: {
+            turbo_frame: "add_new_post"
+          } %>
+        <% end %>
+      <% end %>
     <% end %>
   </main>
 </body>
+<%= turbo_frame_tag "add_new_post" %>

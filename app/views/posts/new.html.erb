@@ -1,17 +1,17 @@
-<h1>New Post</h1>
-
-<%= form_for [@user, @post], html: { class: "form form-horizontal post" } do |form| %>
-
-  <div class="field">
-    <%= form.text_field :title, placeholder: "Title" %>
-  </div>
-  <div class="field">
-    <%= form.text_field :description, placeholder: "Description" %>
-  </div>
-  <div class="field">
-    <%= form.file_field :images, multiple: true %>
-  </div>
-     <div class="actions">
-    <%= form.submit %>
-  </div>
+<%= turbo_frame_tag "add_new_post" do %>
+  <h1>New Post</h1>
+  <%= form_for [@user, @post], html: { class: "form form-horizontal post" } do |form| %>
+    <div class="field">
+      <%= form.text_field :title, placeholder: "Title" %>
+    </div>
+    <div class="field">
+      <%= form.text_field :description, placeholder: "Description" %>
+    </div>
+    <div class="field">
+      <%= form.file_field :images, multiple: true %>
+    </div>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
 <% end %>

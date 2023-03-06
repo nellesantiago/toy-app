@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[edit update destroy]
 
   def index
-    @posts = User.find(params[:user_id]).posts
+    @posts = User.find(params[:user_id]).posts.order(created_at: :desc)
     @user = User.find(params[:user_id])
   end
 
@@ -18,9 +18,12 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to user_posts_path
+      respond_to do |format|
+        format.html {redirect_to user_posts_path, notice: "Post created."}
+        format.turbo_stream
+      end
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -30,8 +33,11 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      flash[:notice] = "Post updated."
-      redirect_to user_posts_path
+      respond_to do |format|
+        format.html {redirect_to user_posts_path, notice: "Post updated."}
+        format.turbo_stream
+      end
+
     else
       render :edit
     end
@@ -39,8 +45,11 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    flash[:notice] = "Post deleted."
-    redirect_to request.referrer
+
+    respond_to do |format|
+      format.html { redirect_to request.referrer, notice: "Post deleted." }
+      format.turbo_stream
+    end
   end
 
   private

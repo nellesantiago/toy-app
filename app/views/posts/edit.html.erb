@@ -1,15 +1,16 @@
-<h1>Edit Post</h1>
-
-<%= form_for( [@user, @post]) do |form| %>
- <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, placeholder: "Title" %>
-  </div>
-  <div class="field">
-    <%= form.label :description%>
-    <%= form.text_field :description, placeholder: "Description" %>
-  </div>
-     <div class="actions">
-    <%= form.submit %>
-  </div>
+<%= turbo_frame_tag @post do %>
+  <h1>Edit Post</h1>
+  <%= form_for( [@user, @post]) do |form| %>
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title, placeholder: "Title" %>
+    </div>
+    <div class="field">
+      <%= form.label :description %>
+      <%= form.text_field :description, placeholder: "Description" %>
+    </div>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
 <% end %>
