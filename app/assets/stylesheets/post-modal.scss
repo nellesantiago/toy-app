@@ -56,6 +56,21 @@
         color: white;
         cursor: pointer;
       }
+
+      .preview-image {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 5px;
+
+        img {
+          background-color: #f7e3dc;
+          margin-right: 10px;
+          width: 100px;
+          height: 100px;
+        }
+      }
+      
       .close {
         height: 40px;
         width: 100%;
@@ -81,7 +96,6 @@
         position: relative;
         margin-right: 10px;
         background-color: #f7e3dc;
-
 
         img {
           width: 100%;

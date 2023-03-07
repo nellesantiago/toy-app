@@ -2,7 +2,7 @@
   <div class="post-modal">
     <div class="post-container">
       <h1>Add New Toy</h1>
-      <%= form_for @post, url: user_posts_path(current_user) do |form| %>
+      <%= form_for @post, url: user_posts_path(current_user), data: {controller: "image-preview"} do |form| %>
         <div class="field">
           <%= form.text_field :title, placeholder: "Title" %>
         </div>
@@ -12,7 +12,14 @@
         <div class="field">
           <%= form.file_field :append_images,
                           multiple: true,
-                          accept: "image/jpeg, image/png, image/gif, image/webp" %>
+                          accept: "image/jpeg, image/png, image/gif, image/webp",
+                          data: {
+                            image_preview_target: "input",
+                            action: "image-preview#readInputs"
+                          } %>
+
+        </div>
+        <div class="preview-image" data-image-preview-target="output">
 
         </div>
         <div class="actions">
