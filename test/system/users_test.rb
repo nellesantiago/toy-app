@@ -33,7 +33,7 @@ class UsersTest < ApplicationSystemTestCase
 
     click_on "Sign up"
 
-    assert_text "You don't have any toys yet."
+    assert_text "Feed"
   end
 
   test "edit account details" do

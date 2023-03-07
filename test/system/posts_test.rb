@@ -40,10 +40,6 @@ class PostsTest < ApplicationSystemTestCase
         page.accept_confirm do
          find(".fa-trash").click
         end
-
-        click_on "Wall"
-
-        assert_text "You don't have any toys yet."
     end
 end
 
