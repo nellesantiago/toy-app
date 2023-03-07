@@ -2,6 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="image-preview"
 export default class extends Controller {
+  static targets = ["input", "output"]
   readInputs() {
     let input = this.inputTarget;
     let output = this.outputTarget;
