@@ -16,7 +16,7 @@ class User < ApplicationRecord
 
   validates :email, uniqueness: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
-  before_save { self.email = email.downcase }
+  before_save :format_data
 
   validates :password, presence: true, length: { in: 6..20 }, allow_nil: true
 
@@ -24,5 +24,11 @@ class User < ApplicationRecord
 
   def full_name
     "#{self.first_name} #{self.last_name}"
+  end
+
+  def format_data
+    self.email = self.email.downcase
+    self.first_name = self.first_name.capitalize
+    self.last_name = self.last_name.capitalize
   end
 end

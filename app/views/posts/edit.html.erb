@@ -10,17 +10,26 @@
         <div class="field">
           <%= form.label :description %>
           <%= form.text_field :description, placeholder: "Description" %>
-          <%= form.file_field :images, multiple: true %>
+          <%= form.file_field :append_images, multiple: true, accept: "image/jpeg, image/png, image/gif, image/webp" %>
+            <div class="image-box">
           <% @post.images.each do |image| %>
             <% if image.persisted? %>
-              <%= image_tag image, style: "width: 50px" %>
+            <%= turbo_frame_tag image do %>
+            <div class="image-container">
+              <%= image_tag image %>
+              <%= link_to attachment_path(image), data: { turbo_method: "delete", turbo_confirm: "Remove attachment?"} do%>
+              <i class="fa-solid fa-circle-xmark"></i>
+              <% end %>
+            </div>
+            <% end %>
             <% end %>
           <% end %>
+            </div>
         </div>
         <div class="actions">
           <%= form.submit "Update Toy" %>
         </div>
-        <%= link_to "Close", :back %>
+        <%= link_to "Close", :back, class: "close" %>
       <% end %>
     </div>
   </div>

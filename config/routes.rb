@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   end
 
   get "feed", to: "feed#index"
+  
+  resources :attachments, only: :destroy
 end
 
 

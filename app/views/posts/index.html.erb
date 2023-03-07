@@ -1,30 +1,18 @@
 <body class="feed">
   <%= render "layouts/nav" %>
   <main>
-    <% if @posts.empty? %>
-      <div class="empty">
-        <div class="message">
-          You don't have any toys yet.<br>
-          <%= link_to "Add one now", new_user_post_path(current_user), class: "add-one" %>
-          <span>or</span>
-          <%= link_to "browse feed", feed_path %>
-        </div>
-        <img src="https://www.linkpicture.com/q/lion_1.png">
-      </div>
-    <% else %>
-      <%= turbo_frame_tag "posts" do %>
-        <%= render @posts %>
-        <% if current_user?(@posts.first.user) %>
-          <%= link_to "+",
-          new_user_post_path(current_user),
-          class: "add-new",
-          data: {
-            turbo_frame: "add_new_post"
-          } %>
-        <% end %>
+    <%= turbo_frame_tag "posts" do %>
+      <%= render @posts %>
+      <% if @posts.empty? || current_user?(@posts.first.user) %>
+        <%= link_to "+",
+        new_user_post_path(current_user),
+        class: "add-new",
+        data: {
+          turbo_frame: "add_new_post"
+        } %>
       <% end %>
     <% end %>
   </main>
 </body>
 <%= turbo_frame_tag "add_new_post" %>
-<%= turbo_frame_tag "edit_post"%>
+<%= turbo_frame_tag "edit_post" %>

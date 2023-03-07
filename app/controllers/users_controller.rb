@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     if @user.save
       login(@user)
       flash[:notice] = "Welcome, #{@user.first_name}!"
-      redirect_to user_posts_path(@user)
+      redirect_to feed_path
     else
       render :new, status: :unprocessable_entity
     end

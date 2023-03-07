@@ -12,7 +12,7 @@
 
   .post-container {
     background-color: white;
-    height: 500px;
+    height: 550px;
     width: 500px;
     margin: auto;
     padding: 50px;
@@ -24,7 +24,7 @@
     }
 
     form {
-      margin-top: 20px;
+      margin-top: 15px;
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -56,7 +56,7 @@
         color: white;
         cursor: pointer;
       }
-      a {
+      .close {
         height: 40px;
         width: 100%;
         border-radius: 10px;
@@ -67,6 +67,37 @@
         justify-content: center;
         align-items: center;
         font-size: 14px;
+      }
+
+      .image-box {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+
+      .image-container {
+        width: 100px;
+        height: 100px;
+        position: relative;
+        margin-right: 10px;
+        background-color: #f7e3dc;
+
+
+        img {
+          width: 100%;
+          height: 100%;
+          margin: auto;
+        }
+
+        i {
+          display: block;
+          right: 5px;
+          top: 5px;
+          z-index: 1;
+          color: rgb(219, 37, 37);
+          position: absolute;
+          cursor: pointer;
+        }
       }
     }
   }
