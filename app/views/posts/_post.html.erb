@@ -31,7 +31,7 @@
     <div class="middle" data-controller="image-carousel">
       <% if post.images.length <= 1 %>
       <% else %>
-        <div id="counter">1 /
+        <div id="counter" data-image-carousel-target="counter">1 /
           <%= post.images.length %></div>
       <% end %>
       <% if post.images.attached? %>

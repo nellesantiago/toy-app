@@ -2,7 +2,7 @@ import { Controller } from '@hotwired/stimulus';
 
 // Connects to data-controller="image-carousel"
 export default class extends Controller {
-  static targets = ['slide'];
+  static targets = ['slide', 'counter'];
   static values = { index: { type: Number, default: 0 } };
 
   next() {
@@ -11,7 +11,7 @@ export default class extends Controller {
     } else {
       this.indexValue = 0;
     }
-    document.getElementById('counter').innerHTML = `${this.indexValue + 1} / ${
+    this.counterTarget.innerHTML = `${this.indexValue + 1} / ${
       this.slideTargets.length
     }`;
   }
@@ -22,7 +22,7 @@ export default class extends Controller {
     } else {
       this.indexValue--;
     }
-    document.getElementById('counter').innerHTML = `${this.indexValue + 1} / ${
+    this.counterTarget.innerHTML = `${this.indexValue + 1} / ${
       this.slideTargets.length
     }`;
   }
