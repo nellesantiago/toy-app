@@ -11,6 +11,9 @@
     <script src="https://kit.fontawesome.com/854e38c6b1.js" crossorigin="anonymous"></script>
   </head>
   <body>
+    <% if controller_name != "sessions" %>
+      <%= render "layouts/flash" %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

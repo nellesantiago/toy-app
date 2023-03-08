@@ -23,7 +23,7 @@ class PostsTest < ApplicationSystemTestCase
         fill_in "Description", with: "This is my first post."
         click_on "Create Toy"
 
-        assert_text "First Post"
+        assert_text "Post created!"
     end
 
     test "edit a post" do
@@ -33,13 +33,15 @@ class PostsTest < ApplicationSystemTestCase
         fill_in "Description", with: "This is my updated post."
         click_on "Update Toy"
 
-        assert_text "Update Post"
+        assert_text "Post updated!"
     end
 
     test "delete a post" do
         page.accept_confirm do
          find(".fa-trash").click
         end
+
+        assert_text "Post deleted!"
     end
 end
 

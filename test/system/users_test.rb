@@ -33,7 +33,7 @@ class UsersTest < ApplicationSystemTestCase
 
     click_on "Sign up"
 
-    assert_text "Feed"
+    assert_text "Welcome, Rails!"
   end
 
   test "edit account details" do
@@ -44,9 +44,8 @@ class UsersTest < ApplicationSystemTestCase
     
     fill_in "First name", with: "New"
     click_on "Save changes"
-    click_on "Wall"
 
-    assert_text "New"
+    assert_text "Account updated."
   end
 
   test "delete account" do
@@ -58,7 +57,7 @@ class UsersTest < ApplicationSystemTestCase
       click_on "Continue to account deletion"
     end
 
-    assert_text "Get Started"
+    assert_text "Account deleted."
   end
 
   test "log in as admin" do
@@ -82,5 +81,7 @@ class UsersTest < ApplicationSystemTestCase
     page.accept_confirm do
       click_on "Delete User", match: :first
     end
+
+    assert_text "User deleted."
   end
 end
