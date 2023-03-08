@@ -10,7 +10,8 @@
               edited
               <%= distance_of_time_in_words(DateTime.now, post.updated_at) %>
             <% else %>
-              created <%= distance_of_time_in_words(DateTime.now, post.created_at) %>
+              created
+              <%= distance_of_time_in_words(DateTime.now, post.created_at) %>
             <% end %>
             ago
           </div>
@@ -27,10 +28,22 @@
         </div>
       <% end %>
     </div>
-    <div class="middle">
+    <div class="middle" data-controller="image-carousel">
       <% if post.images.attached? %>
+        <% if post.images.length <= 1 %>
+        <% else %>
+          <button data-action="image-carousel#previous">
+            <i class="fa-solid fa-caret-left"></i>
+          </button>
+        <% end %>
         <% post.images.each do | image | %>
-          <%= image_tag(image, style: "width: 300px") %>
+          <%= image_tag(image, data: { image_carousel_target: "slide" }) %>
+        <% end %>
+        <% if post.images.length <= 1 %>
+        <% else %>
+          <button data-action="image-carousel#next">
+            <i class="fa-solid fa-caret-right"></i>
+          </button>
         <% end %>
       <% else %>
         <div class="no-image">No image</div>

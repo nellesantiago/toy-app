@@ -1,0 +1,33 @@
+import { Controller } from '@hotwired/stimulus';
+
+// Connects to data-controller="image-carousel"
+export default class extends Controller {
+  static targets = ['slide'];
+  static values = { index: { type: Number, default: 0 } };
+
+  next() {
+    if (this.indexValue < this.slideTargets.length - 1) {
+      this.indexValue++;
+    } else {
+      this.indexValue = 0;
+    }
+  }
+
+  previous() {
+    if (this.indexValue == 0) {
+      this.indexValue = this.slideTargets.length - 1;
+    } else {
+      this.indexValue--;
+    }
+  }
+
+  indexValueChanged() {
+    this.showCurrentSlide();
+  }
+
+  showCurrentSlide() {
+    this.slideTargets.forEach((element, index) => {
+      element.hidden = index !== this.indexValue;
+    });
+  }
+}
