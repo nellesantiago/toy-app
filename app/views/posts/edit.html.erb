@@ -2,7 +2,7 @@
   <div class="post-modal">
     <div class="post-container">
       <h1>Edit Toy</h1>
-      <%= form_for([@user, @post]) do |form| %>
+      <%= form_for @post, url: user_posts_path(current_user), data: {controller: "image-preview"} do |form| %>
         <div class="field">
           <%= form.label :title %>
           <%= form.text_field :title, placeholder: "Title" %>
@@ -10,21 +10,32 @@
         <div class="field">
           <%= form.label :description %>
           <%= form.text_field :description, placeholder: "Description" %>
-          <%= form.file_field :append_images, multiple: true, accept: "image/jpeg, image/png, image/gif, image/webp" %>
-            <div class="image-box">
-          <% @post.images.each do |image| %>
-            <% if image.persisted? %>
-            <%= turbo_frame_tag image do %>
-            <div class="image-container">
-              <%= image_tag image %>
-              <%= link_to attachment_path(image), data: { turbo_method: "delete", turbo_confirm: "Remove attachment?"} do%>
-              <i class="fa-solid fa-circle-xmark"></i>
+          <div class="field">
+            <%= form.file_field :append_images,
+                            multiple: true,
+                            accept: "image/jpeg, image/png, image/gif, image/webp",
+                            data: {
+                              image_preview_target: "input",
+                              action: "image-preview#readInputs"
+                            } %>
+          </div>
+          <div class="image-box">
+            <div class="preview-image" data-image-preview-target="output">
+
+            </div>
+            <% @post.images.each do |image| %>
+              <% if image.persisted? %>
+                <%= turbo_frame_tag image do %>
+                  <div class="image-container">
+                    <%= image_tag image %>
+                    <%= link_to attachment_path(image), data: { turbo_method: "delete", turbo_confirm: "Remove attachment?"} do %>
+                      <i class="fa-solid fa-circle-xmark"></i>
+                    <% end %>
+                  </div>
+                <% end %>
               <% end %>
-            </div>
             <% end %>
-            <% end %>
-          <% end %>
-            </div>
+          </div>
         </div>
         <div class="actions">
           <%= form.submit "Update Toy" %>
