@@ -19,8 +19,8 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       respond_to do |format|
-        format.html {redirect_to user_posts_path, notice: "Post created."}
-        format.turbo_stream
+        format.html {redirect_to user_posts_path}
+        format.turbo_stream {flash.now[:notice] = "Post created!"}
       end
     else
       render :new, status: :unprocessable_entity
@@ -34,8 +34,8 @@ class PostsController < ApplicationController
   def update
     if @post.update(post_params)
       respond_to do |format|
-        format.html {redirect_to request.referrer, notice: "Post updated."}
-        format.turbo_stream
+        format.html {redirect_to request.referrer}
+        format.turbo_stream {flash.now[:notice] = "Post updated!"}
       end
     else
       render :edit
@@ -46,8 +46,8 @@ class PostsController < ApplicationController
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to request.referrer, notice: "Post deleted." }
-      format.turbo_stream
+      format.html { redirect_to request.referrer }
+      format.turbo_stream {flash.now[:notice] = "Post deleted!"}
     end
   end
 

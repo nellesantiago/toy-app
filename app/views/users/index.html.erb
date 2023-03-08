@@ -10,13 +10,18 @@
         User since
         <%= user.created_at.strftime("%B %d, %Y") %><br>
         <% if user.posts.empty? %>
-        No posts yet
+          No posts yet
         <% else %>
-        Published
-        <%= pluralize(user.posts.count, "post") %>
+          Published
+          <%= pluralize(user.posts.count, "post") %>
         <% end %>
         <div class="button">
-          <%= link_to "View Wall", user_posts_path(user), class: "view-profile", disabled: true if user.posts.any? %>
+          <%= if user.posts.any?
+            link_to "View Wall",
+            user_posts_path(user),
+            class: "view-profile",
+            disabled: true
+          end %>
           <% if current_user.admin? %>
             <%= link_to "Delete User",
             user,
@@ -30,4 +35,5 @@
       </div>
     <% end %>
   </main>
+  <%= render "layouts/flash" %>
 </body>

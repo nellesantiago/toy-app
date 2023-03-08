@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   def destroy
     if current_user.admin?
       @user.destroy
-      flash[:notice] = "Account deleted."
+      flash[:notice] = "User deleted."
       redirect_to users_path
     else
       log_out

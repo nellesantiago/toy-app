@@ -2,7 +2,8 @@
   <div class="post-modal">
     <div class="post-container">
       <h1>Edit Toy</h1>
-      <%= form_for @post, url: user_posts_path(current_user), data: {controller: "image-preview"} do |form| %>
+      <%= form_for @post, url: user_post_path(current_user, @post), data: {controller: "image-preview"} do |form| %>
+        <%= render "shared/error_messages", object: @post %>
         <div class="field">
           <%= form.label :title %>
           <%= form.text_field :title, placeholder: "Title" %>

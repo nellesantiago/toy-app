@@ -10,7 +10,7 @@
         <%= f.text_field :last_name %>
         <%= f.label :email, "Email address" %>
         <%= f.email_field :email %>
-        <%= f.label :password, "Password (leave blank if you don't want to change it)"%>
+        <%= f.label :password, "Password (leave blank if you don't want to change it)" %>
         <%= f.password_field :password %>
         <%= f.label :password_confirmation, "Confirm your password" %>
         <%= f.password_field :password_confirmation %>
@@ -18,17 +18,18 @@
       <% end %>
     </section>
     <section class="right">
-        <div class="title">Delete Account</div>
-        <div class="note">
+      <div class="title">Delete Account</div>
+      <div class="note">
         Note: This is irreversible.<br>You may lose your data including your posts.
-        </div>
+      </div>
       <%= link_to "Continue to account deletion",
       @user,
       data: {
         turbo_method: :delete,
         turbo_confirm: "Are you sure?"
-      }, class: "delete-account" %>
+      },
+      class: "delete-account" %>
     </section>
   </main>
-
+  <%= render "layouts/flash" %>
 </body>
