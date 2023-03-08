@@ -11,6 +11,9 @@ export default class extends Controller {
     } else {
       this.indexValue = 0;
     }
+    document.getElementById('counter').innerHTML = `${this.indexValue + 1} / ${
+      this.slideTargets.length
+    }`;
   }
 
   previous() {
@@ -19,6 +22,9 @@ export default class extends Controller {
     } else {
       this.indexValue--;
     }
+    document.getElementById('counter').innerHTML = `${this.indexValue + 1} / ${
+      this.slideTargets.length
+    }`;
   }
 
   indexValueChanged() {
