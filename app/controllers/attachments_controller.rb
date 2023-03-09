@@ -4,7 +4,7 @@ class AttachmentsController < ApplicationController
     @attachment.purge
     respond_to do |format|
       format.html { redirect_to request.refferer, success: "Attachment removed." }
-      format.turbo_stream { flash.now[:success] = "Attachment removed."}
+      format.turbo_stream { flash.now[:success] = "Attachment removed." }
     end
   end
 end
