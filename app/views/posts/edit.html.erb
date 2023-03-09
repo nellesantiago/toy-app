@@ -21,9 +21,7 @@
                             } %>
           </div>
           <div class="image-box">
-            <div class="preview-image" data-image-preview-target="output">
-
-            </div>
+            <div class="preview-image" data-image-preview-target="output"></div>
             <% @post.images.each do |image| %>
               <% if image.persisted? %>
                 <%= turbo_frame_tag image do %>
